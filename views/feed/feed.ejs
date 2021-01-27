@@ -1,0 +1,19 @@
+<h1>Hola <%= currentUser.username %> </h1>
+
+<a href="/addpost">add post</a>
+
+<% if (posts.length === 0 ) { %>
+ <p>no posts yet</p>
+<% } %> 
+
+
+<ul>
+  <% posts.forEach( post => { %>
+   <li>
+     <div>
+       <%= post.caption %>
+      <img src="<%= post.img %> " alt="">
+     </div>
+  </li>
+  <% }) %>
+</ul>
