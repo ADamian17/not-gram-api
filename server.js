@@ -8,7 +8,8 @@ const MongoStore = require('connect-mongo')(session);
 const routes = require('./routes')
 
 /* PORT */
-const PORT = 3500;
+require('dotenv').config()
+const PORT = process.env.PORT;
 
 const app = express()
 
@@ -26,8 +27,8 @@ app.use( methodOverride('_method'));
 
 // for our session 
 app.use( session({
-  store: new MongoStore({ url: 'mongodb://127.0.0.1:27017/not-instagram' }),
-  secret: 'blablabla',
+  store: new MongoStore({ url: process.env.MONGODB_URI }),
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
   cookie: {
