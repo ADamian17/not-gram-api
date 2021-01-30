@@ -1,0 +1,30 @@
+<nav class="nav">
+
+  <h3 class="nav__brand">
+    <a href="/">not-gram</a>
+  </h3>
+
+  <section class="nav__menu">
+    <a class="nav__menu--links" href="/">
+      <i class="fas fa-home"></i>
+    </a>
+    
+    <a class="nav__menu--links" href="/addpost">
+      <i class="fas fa-plus-square"></i>
+    </a>
+
+    <form class="nav__menu--links form__logout" action="/users/logout?_method=DELETE" method="POST">
+      <label class="logout-icon" for="logout">
+        <i class="fas fa-sign-out-alt"></i>
+      </label>
+      <input id="logout" type="submit" value="logout" style="display: none;"/>
+    </form>
+
+    <a class="nav__menu--links" href="/users/<%= currentUser.id %> ">
+      <div class="nav__img__container">
+        <img src="<%= currentUser.userImg %>" alt="avatar">
+      </div>
+    </a>
+  </section>
+
+</nav>
