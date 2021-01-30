@@ -15,16 +15,52 @@
       
       <% posts.forEach( post => { %>
         <article class="card">
+          <!-- card header  -->
           <header class="card__header">
             
             <div class="card__header__img">
               <img src="<%= post.user.avatarImg %>" alt="">  
             </div>
-            
+
             <small>
               <a href="/users/<%= post.user._id %>"><%= post.user.username %></a> 
             </small>
           </header>
+
+          <!-- card body -->
+          <section class="card__body">
+            <img src="<%= post.img %> " alt="">
+          </section>
+
+          <!-- card footer -->
+          <section class="card__footer">
+            
+            <div class="card__footer__reactions">
+              <div class="card__footer__icons">
+                 <i class="fas fa-heart"></i>
+                <i class="far fa-comment"></i>
+                <i class="far fa-paper-plane"></i>
+              </div>
+            </div>
+            
+            <div class="card__footer__user--info">
+              <p>liked by ... and others</p>
+            </div>
+            <div class="card__footer__user--info">
+              <p><%= post.user.username %> <%= post.caption %></p>
+            </div>
+
+            <section class="card__add__comment">
+              <form id="comment-form" action="">
+                <div class="inline-fields">
+                  <input class="add-comment" type="text" placeholder="Add Comment...">
+
+                  <input id="submit-comment" class="submit" type="submit" value="post" >
+                </div>
+              </form>
+            </section>
+
+          </section>
 
         </article>
       <% }) %>

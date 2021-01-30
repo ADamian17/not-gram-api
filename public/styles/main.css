@@ -3,7 +3,7 @@
 
 /* variebles */
 :root {
-  --primary-black: #5c5757;
+  --primary-black: #3c3939;
   --primary-grey: #b5afafd2;
   --font-brand: 'Kaushan Script', cursive
 }
@@ -115,6 +115,7 @@
   margin-bottom: 25px;
 }
 
+/* card header start */
 .card__header {
   height: 60px;
   display: flex;
@@ -143,3 +144,96 @@
   height: 100%; 
 }
 
+/* card header end */
+
+/* card body start */
+
+.card__body {
+  height: 750px;
+  overflow: hidden;
+}
+
+.card__body img {
+  width: 100%;
+  height: 100%;
+}
+
+/* card body end */
+
+/* card footer start */
+
+.card__footer__reactions {
+  height: 50px;
+  display: flex;
+  padding: 15px;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 25px;
+  color: grey;
+}
+
+.card__footer__icons {
+   width: 100px;
+  display: flex;
+  justify-content: space-between;
+  color: black;
+}
+
+.card__footer__user--info {
+  height: 50px;
+  display: flex;
+  padding: 15px;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 20px;
+}
+
+.card__add__comment {
+  height: 70px;
+  border-top: 1px solid var(--primary-grey);
+  /* padding: 15px; */
+}
+
+.card__add__comment form {
+  width: 100%;
+  height: 100%;
+}
+.card__add__comment form .inline-fields {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.add-comment {
+  width: 100%;
+  height: 100%;
+  border: none;
+  text-indent: 15px;
+  font-size: larger; 
+  color: black !important;
+}
+
+.add-comment:active,
+.add-comment:focus {
+  outline: none;
+}
+
+input.submit {
+  background-color: white;
+  border: none;
+  font-size: 20px;
+  text-transform: capitalize;
+  position: absolute;
+  top: 35%;
+  right: 5%;
+  pointer-events: none;
+  color: #8791b1;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+}
+
+input.submit:hover {
+  cursor: pointer;
+}
+
+/* card footer end */

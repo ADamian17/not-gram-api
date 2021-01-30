@@ -67,10 +67,40 @@ const login = ( req, res ) => {
   });
 }
 
+const show = ( req, res ) => {
+  const _id = req.params.userId
+  
+  db.User.findById( _id )
+    .populate('posts')
+    .exec((err, foundProfile) => {
+      if (err) return res.status(500).json({
+        status: 500,
+        data: foundProfile,
+        error: [{ message: 'Something went wrong. Please try again '}],
+      });
+
+      return res.render( 'user/profile', {user: foundProfile} );
+    });
+};
+
+
+// Logout 
+const logout = (req, res) => {
+  if (!req.session.currentUser) return res.status(401).json({ status: 401, message: 'Unauthorized'});
+
+  req.session.destroy( (err) =>  {
+    if (err) return res.redirect('/users/signup');
+
+    res.redirect('/users/signup');
+  });
+};
+
 
 module.exports = {
   register,
   createUser,
   loginForm,
-  login
+  login,
+  logout,
+  show,
 }

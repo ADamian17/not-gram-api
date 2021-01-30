@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include('../components/_head/_head.ejs') %>
+   
+<body>
+  <%- include('../components/_mainNav/_mainNav.ejs') %> 
+
+  <main>
+
+    <div class="container">
+
+      <header class="main__header">
+
+        <section class="profile__img_container">
+
+          <div class="img-container">
+            <img src="<%= user.avatarImg %>" alt="">
+          </div>
+
+        </section>
+
+        <section class="main__header__info">
+          <div>
+            <h1><%= user.username %> </h1>
+            <a href="/users/profile/edit">edit</a>
+          </div>
+
+          <div>
+            <h1>posts <%= user.posts.length %> </h1>
+            <h1>followers <%= user.followers.length %> </h1>
+            <h1>following <%= user.following.length %> </h1>
+          </div>
+
+          <p><%= user.firstName %> <%= user.lastName %></p>
+        </section>
+    
+      </header>
+
+
+      <section class="main__posts">
+        <nav>
+          <a href="#">posts</a>
+        </nav>
+
+        <section class="posts_list">
+
+          <% if ( user.posts.length === 0 ) { %>
+           <!-- you have no post yet -->
+          <% } %>
+          
+          <% user.posts.forEach( post => { %>
+            <div class="post"><%= post.caption %> 
+            </div>
+          <% }) %>
+
+        </section>
+  
+      </section>
+    </div>
+
+
+  </main>
+
+  <!-- <form action="/users/delete?_method=DELETE" method="POST">
+    <input type="submit" value="delete">
+  </form> -->
+  
+</body>
+</html>
