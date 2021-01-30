@@ -1,19 +1,30 @@
-<h1>Hola <%= currentUser.username %> </h1>
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../components/_head/_head.ejs') %>
+<body>
 
-<a href="/addpost">add post</a>
-
-<% if (posts.length === 0 ) { %>
- <p>no posts yet</p>
-<% } %> 
-
-
-<ul>
-  <% posts.forEach( post => { %>
-   <li>
-     <div>
-       <%= post.caption %>
-      <img src="<%= post.img %> " alt="">
-     </div>
-  </li>
-  <% }) %>
-</ul>
+  <% if (currentUser.username) { %>
+    <h1>Hola <%= currentUser.username %> </h1>
+  <% } %>
+  
+  <a href="/addpost">add post</a>
+  
+  <% if (posts.length === 0 ) { %>
+   <p>no posts yet</p>
+  <% } %> 
+  
+  <ul>
+    <% posts.forEach( post => { %>
+     <li>
+       <div>
+         <%= post.caption %>
+         <div>
+           <img src="<%= post.img %> " style="width: 200px;"> 
+         </div>
+       </div>
+    </li>
+    <% }) %>
+  </ul>
+  
+</body>
+</html>

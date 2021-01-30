@@ -1,8 +1,7 @@
 const db = require('../models');
 
 const index = ( req, res ) => {
-  console.log(req.session);
-
+  
   db.Post.find({})
   .populate('user')
   .sort({ createdAt: -1 })
@@ -18,8 +17,8 @@ const index = ( req, res ) => {
   })
 }
 
-
-const addPost = ( req, res ) => {
+// presentational
+const addPostForm = ( req, res ) => {
   res.render('post/new');
 }
 
@@ -34,21 +33,24 @@ const newPost = ( req, res ) => {
       createdPost.user = foundUser._id;
       createdPost.save();
 
-      console.log(createdPost)
-      console.log('before', foundUser);
       foundUser.posts.push(createdPost._id);
       foundUser.save();
-      console.log('after', foundUser);
 
       res.redirect('/');
-    })
-
-  })
-
+    });
+  });
 }
+
+const testPosts = ( req, res ) => {
+  db.Post.find({})
+  .then( posts => res.send(posts) )
+  .catch( err => console.log(err) );
+}
+
 
 module.exports = {
   index,
-  addPost,
+  addPostForm,
   newPost,
+  testPosts
 }

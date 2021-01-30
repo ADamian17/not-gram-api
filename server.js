@@ -31,15 +31,17 @@ app.use( session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    maxAge: 1000 * 60 * 60 * 24 * 7 * 2 // two weeks 
-  }
-}) 
+    maxAge: 1000 * 60 * 24 * 7 * 2 // two weeks 
+    }
+  }) 
 );
 
 /* routes */
+// post routes
 app.use( '/',  routes.post ) ;
 
+// users routes 
 app.use('/users', routes.user );
 
-
+// app listing
 app.listen( PORT, () => console.log( `listing at port ${PORT} \nhttp://localhost:${PORT}`) );
