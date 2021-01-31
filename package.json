@@ -12,6 +12,7 @@
   },
   "author": "Adonis D. Martin",
   "license": "MIT",
+  "homepage": "/user/signup",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "connect-mongo": "^3.2.0",
