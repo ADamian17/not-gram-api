@@ -8,6 +8,8 @@ const index = ( req, res ) => {
   .exec( ( err, posts ) => {
     if ( err ) return console.log(err)
 
+    console.log(req.session.currentUser)
+
     const context = {
       posts,
       currentUser: req.session.currentUser

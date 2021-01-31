@@ -37,6 +37,11 @@ app.use( session({
   }) 
 );
 
+app.use( ( req, res, next ) => {
+  console.log(`${req.method} ${req.originalUrl}`)
+  next();
+})
+
 // user authentication middleware
 app.use( ( req, res, next)  => {
   app.locals.currentUser =  req.session.currentUser;
@@ -45,7 +50,7 @@ app.use( ( req, res, next)  => {
 
 /* routes */
 // post routes
-app.use( '/',  routes.post ) ;
+app.use( '/', routes.post ) ;
 
 // users routes 
 app.use('/users', routes.user );

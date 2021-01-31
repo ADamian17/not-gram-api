@@ -1,7 +1,26 @@
-<form action="/users/login" method="POST">
+<!DOCTYPE html>
+<html lang="en">
 
-  <input type="email" name="email" placeholder="email"/>
-  <input type="password" name="password" placeholder="password"/>
+  <!-- partial for head -->
+  <%- include('../partials/_head/_head') %>
+<body>
+  <main class="center-form">
 
-  <input type="submit" value="login" />
-</form>
+    <h1>login</h1>
+
+    <form class="for-login-register" action="/users/login" method="POST">
+  
+      <input type="email" name="email" placeholder="email"/>
+      <input type="password" name="password" placeholder="password"/>
+    
+      <input type="submit" value="login" />
+    </form>
+
+    <small>
+     new to us <a href="/users/register">register</a>
+    </small>
+
+  </main>
+  
+</body>
+</html>
