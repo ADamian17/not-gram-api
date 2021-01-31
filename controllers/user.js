@@ -29,7 +29,7 @@ const createUser = (req, res) => {
           if ( err ) return console.log(err);
 
           console.log(createUser);
-          res.redirect('/');
+          res.redirect('/users/signup');
         })
       });
     })
