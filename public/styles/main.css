@@ -120,6 +120,7 @@
   align-items: center;
   padding: 10px;
   font-size: 25px;
+  border-bottom: 1px solid var(--primary-grey);
 }
 
 .card__header small a:link,
