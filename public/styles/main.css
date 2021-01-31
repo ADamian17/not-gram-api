@@ -109,9 +109,6 @@
   border-radius: 5px;
   align-self: center;
   box-shadow: 0px 0px 3px 0px var(--primary-grey);
-}
-
-.card:last-of-type {
   margin-bottom: 20px;
 }
 
