@@ -109,10 +109,7 @@
   border-radius: 5px;
   align-self: center;
   box-shadow: 0px 0px 3px 0px var(--primary-grey);
-}
-
-.card:not( :last-of-type ) {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 /* card header start */
@@ -123,6 +120,7 @@
   align-items: center;
   padding: 10px;
   font-size: 25px;
+  border-bottom: 1px solid var(--primary-grey);
 }
 
 .card__header small a:link,
@@ -237,3 +235,41 @@ input.submit:hover {
 }
 
 /* card footer end */
+
+/* for login and resgister */
+.center-form {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-form h1 {
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+}
+
+form.for-login-register {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+form.for-login-register input:not( :last-of-type ) {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 15px;
+  text-indent: 5px;
+}
+form input:last-of-type {
+  width: 100px;
+  height: 40px;
+}
+
+form + small {
+  margin-top: 10px;
+}

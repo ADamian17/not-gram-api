@@ -29,7 +29,7 @@ const createUser = (req, res) => {
           if ( err ) return console.log(err);
 
           console.log(createUser);
-          res.redirect('/');
+          res.redirect('/users/signin');
         })
       });
     })
@@ -61,8 +61,7 @@ const login = ( req, res ) => {
         userId: foundUser._id
       }
 
-      res.redirect('/')
-
+      res.redirect('/');
     })
   });
 }
@@ -91,7 +90,7 @@ const logout = (req, res) => {
   req.session.destroy( (err) =>  {
     if (err) return res.redirect('/users/signup');
 
-    res.redirect('/users/signup');
+    res.redirect('/users/signin');
   });
 };
 
