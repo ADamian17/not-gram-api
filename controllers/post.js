@@ -1,10 +1,10 @@
-const db = require('../models');
+const { User, Post } = require('../models');
 
 const index = async ( req, res ) => {
 
   try {
 
-    const posts = await db.Post.find({}).populate('user').sort({ createdAt: -1 })
+    const posts = await Post.find({}).populate('user').sort({ createdAt: -1 })
 
     return res.json({
       status: 200,
@@ -22,24 +22,45 @@ const index = async ( req, res ) => {
 };
 
 
-const createPost = ( req, res ) => {
-  const userId = req.session.currentUser.userId;
+const createPost = async ( req, res ) => {
+  
+  try {
+    req.body.user = req.user
+    
+    const createdPost = await Post.create( req.body );
+    
+    const foundUser = await User.findById( createdPost.user );
+    
+    foundUser.posts.push(createdPost._id);
+    foundUser.save();
 
-  db.Post.create( req.body, ( err, createdPost ) => {
-    if ( err ) return console.log(err)
+    console.log( foundUser )
 
-    db.User.findById( userId, ( err, foundUser ) => {
-
-      createdPost.user = foundUser._id;
-      createdPost.save();
-
-      foundUser.posts.push(createdPost._id);
-      foundUser.save();
-
-      res.redirect('/');
+    return res.json({
+      status: 200,
+      requestedAt: new Date().toLocaleString(),
     });
-  });
+    
+  } catch (error) {
+
+    console.log( error )
+
+    return res.status(500).json({
+      status: 500,
+      message: 'internal error',
+      error
+    });  
+  }
 }
+
+// new post
+// router.post('/createpost', authRequired, post.createPost );
+
+// update post
+
+// delete post
+
+// like post
 
 
 module.exports = {

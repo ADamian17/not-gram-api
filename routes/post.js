@@ -6,8 +6,15 @@ const { authRequired } = require('../middleware');
 
 // all post 
 router.get( '/', authRequired, post.index );
+// show post
 
 // new post
-// router.post('/createpost', authRequired, post.createPost );
+router.post('/createpost', authRequired, post.createPost );
+
+// update post
+
+// delete post
+
+// like post
 
 module.exports = router;
