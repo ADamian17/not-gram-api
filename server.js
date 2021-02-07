@@ -27,7 +27,7 @@ app.use( logger );
 
 /* routes */
 // post routes
-app.use( '/', ( req, res ) => {
+app.get( '/', ( req, res ) => {
   res.send('<h1 style="text-align: center;">Not Instagram</h1>')
 }) ;
 
