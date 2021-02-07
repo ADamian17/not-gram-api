@@ -9,11 +9,12 @@ router.get( '/', authRequired, post.index );
 // show post
 
 // new post
-router.post('/createpost', authRequired, post.createPost );
+router.post( '/createpost', authRequired, post.createPost );
 
 // update post
 
 // delete post
+router.delete( '/:postId/delete', authRequired, post.deletePost );
 
 // like post
 

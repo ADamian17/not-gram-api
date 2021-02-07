@@ -34,36 +34,57 @@ const createPost = async ( req, res ) => {
     foundUser.posts.push(createdPost._id);
     foundUser.save();
 
-    console.log( foundUser )
-
     return res.json({
       status: 200,
       requestedAt: new Date().toLocaleString(),
     });
     
   } catch (error) {
-
     console.log( error )
 
     return res.status(500).json({
       status: 500,
       message: 'internal error',
-      error
     });  
   }
 }
 
-// new post
-// router.post('/createpost', authRequired, post.createPost );
-
 // update post
 
 // delete post
+const deletePost = async ( req, res ) => {
+
+  try {
+    const postId = req.params.postId;
+    
+    const deletedPost = await Post.findByIdAndDelete( postId );
+    
+    const foundUser = await User.findById( deletedPost.user );
+    
+    foundUser.posts.remove( deletedPost )
+    foundUser.save();
+
+    return res.json({
+      status: 200,
+      requestedAt: new Date().toLocaleString(),
+    });
+
+  } catch (error) {
+    console.log( error )
+
+    return res.status(500).json({
+      status: 500,
+      message: 'internal error',
+    });  
+  }
+
+}
 
 // like post
 
 
 module.exports = {
   index,
-  createPost
+  createPost,
+  deletePost,
 }
