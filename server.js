@@ -22,6 +22,7 @@ app.use( express.static('public'));
 
 /* for parsing application/x-www-form-urlencoded */
 app.use( express.urlencoded({ extended: true }))
+app.use( express.json() );
 
 app.use( methodOverride('_method'));
 
