@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const { auth } = require('../controllers');
+const { authRequired } = require('../middleware');
 
 /* register */
 router.post( '/register', auth.register );
@@ -10,6 +11,6 @@ router.post( '/register', auth.register );
 router.post( '/login', auth.login );
 
 /* profile */
-router.get( '/profile', auth.profile );
+router.get( '/profile', authRequired, auth.profile );
 
 module.exports = router;

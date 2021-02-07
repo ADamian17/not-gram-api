@@ -92,12 +92,23 @@ const login = async ( req, res ) => {
   }
 }
 
-const profile = ( req, res ) => {
-  res.json({
-    status: 200,
-    message: 'success'
-  });
-}
+const profile = async ( req, res ) => {
+
+  try {
+
+    const foundUser = await User.findById( req.user );
+
+    return res.json({ headers: req.headers, user: foundUser });
+    
+  } catch (error) {
+
+    return res.status(500).json({
+      status: 500,
+      message: 'server internal error',
+    });
+    
+  };
+};
 
 module.exports = {
   register,
