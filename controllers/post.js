@@ -21,6 +21,28 @@ const index = async ( req, res ) => {
   };
 };
 
+const showPost = async ( req, res ) => {
+
+  try {
+    const postId = req.params.postId;
+
+    const foundPost = await Post.findById( postId ).populate('user');
+
+    return res.json({
+      status: 200,
+      data: foundPost,
+      requestedAt: new Date().toLocaleString(),
+    });
+    
+  } catch (error) {
+    return res.status(500).json({
+      status: 500,
+      message: 'internal error',
+      error
+    });
+  }
+}
+
 
 const createPost = async ( req, res ) => {
   
@@ -85,6 +107,7 @@ const deletePost = async ( req, res ) => {
 
 module.exports = {
   index,
+  showPost,
   createPost,
   deletePost,
 }

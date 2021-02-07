@@ -6,10 +6,12 @@ const { authRequired } = require('../middleware');
 
 // all post 
 router.get( '/', authRequired, post.index );
-// show post
 
 // new post
 router.post( '/createpost', authRequired, post.createPost );
+
+// show post
+router.get( '/:postId', authRequired, post.showPost );
 
 // update post
 
