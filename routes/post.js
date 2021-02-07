@@ -5,7 +5,7 @@ const { post } = require('../controllers');
 const { authRequired } = require('../middleware');
 
 // all post 
-router.get( '/',  post.index );
+router.get( '/', authRequired, post.index );
 
 // new post
 // router.post('/createpost', authRequired, post.createPost );

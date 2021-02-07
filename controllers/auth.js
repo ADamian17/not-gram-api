@@ -75,6 +75,8 @@ const login = async ( req, res ) => {
 
   } catch (error) {
 
+    console.log( error );
+    
     if ( error === 'invalidUser' ) {
 
       return res.status(400).json({
