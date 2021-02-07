@@ -9,7 +9,7 @@ const routes = require('./routes')
 
 /* PORT */
 require('dotenv').config()
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3005;
 
 const app = express()
 
@@ -27,7 +27,7 @@ app.use( methodOverride('_method'));
 
 // for our session 
 app.use( session({
-  store: new MongoStore({ url: process.env.MONGODB_URI }),
+  store: new MongoStore({ url: process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/not-instagram'}),
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
@@ -42,7 +42,7 @@ app.use( ( req, res, next ) => {
   next();
 })
 
-// user authentication middleware
+// user it create a global varieble for our app
 app.use( ( req, res, next)  => {
   app.locals.currentUser =  req.session.currentUser;
   next();

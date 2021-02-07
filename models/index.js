@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 require('dotenv').config()
-const connectionStr = process.env.MONGODB_URI;
+const connectionStr = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/not-instagram';
 
 mongoose.connect( connectionStr, {
   useNewUrlParser: true,
