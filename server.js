@@ -37,5 +37,8 @@ app.use( '/api/v1/auth', auth );
 // users routes 
 // app.use('/api/v1/users', user );
 
+// post routes 
+app.use('/api/v1/posts', post );
+
 // app listing
 app.listen( PORT, () => console.log( `listing at port ${PORT} \nhttp://localhost:${PORT}`) );

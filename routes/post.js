@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
-const ctrls = require('../controllers');
+const { post } = require('../controllers');
 const { authRequired } = require('../middleware');
 
+// all post 
+router.get( '/',  post.index );
 
-router.get( '/', authRequired, ctrls.post.index );
-router.get('/addpost', authRequired, ctrls.post.addPostForm );
-router.post('/newpost', ctrls.post.newPost );
-
+// new post
+// router.post('/createpost', authRequired, post.createPost );
 
 module.exports = router;

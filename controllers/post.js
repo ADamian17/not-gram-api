@@ -1,30 +1,28 @@
 const db = require('../models');
 
-const index = ( req, res ) => {
-  
-  db.Post.find({})
-  .populate('user')
-  .sort({ createdAt: -1 })
-  .exec( ( err, posts ) => {
-    if ( err ) return console.log(err)
+const index = async ( req, res ) => {
 
-    console.log(req.session.currentUser)
+  try {
 
-    const context = {
-      posts,
-      currentUser: req.session.currentUser
-    }
+    const posts = await db.Post.find({}).populate('user').sort({ createdAt: -1 })
 
-    res.render('feed/feed', context );
-  })
-}
+    return res.json({
+      status: 200,
+      data: posts,
+      requestedAt: new Date().toLocaleString(),
+    });
+    
+  } catch (error) {
+      return res.status(500).json({
+        status: 500,
+        message: 'internal error',
+        error
+      });
+  };
+};
 
-// presentational
-const addPostForm = ( req, res ) => {
-  res.render('post/new');
-}
 
-const newPost = ( req, res ) => {
+const createPost = ( req, res ) => {
   const userId = req.session.currentUser.userId;
 
   db.Post.create( req.body, ( err, createdPost ) => {
@@ -43,16 +41,8 @@ const newPost = ( req, res ) => {
   });
 }
 
-const testPosts = ( req, res ) => {
-  db.Post.find({})
-  .then( posts => res.send(posts) )
-  .catch( err => console.log(err) );
-}
-
 
 module.exports = {
   index,
-  addPostForm,
-  newPost,
-  testPosts
+  createPost
 }
