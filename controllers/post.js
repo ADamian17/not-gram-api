@@ -71,6 +71,37 @@ const createPost = async ( req, res ) => {
 
 // update post
 
+const updatePost = async ( req, res ) => {
+  try {
+    const postId = req.params.postId;
+    
+    const updatedPost = await Post.findByIdAndUpdate( 
+      postId,
+      {
+        $set: {
+          ...req.body,
+        },
+      },  
+      { 
+        new: true 
+      });
+
+    return res.status(200).json({
+      status: 200,
+      data: updatedPost,
+      message: 'success',
+    });
+    
+  } catch (error) {
+    console.log( error )
+
+    return res.status(500).json({
+      status: 500,
+      message: 'internal error',
+    });  
+  }
+} 
+
 // delete post
 const deletePost = async ( req, res ) => {
 
@@ -84,8 +115,8 @@ const deletePost = async ( req, res ) => {
     foundUser.posts.remove( deletedPost )
     foundUser.save();
 
-    return res.json({
-      status: 200,
+    return res.status(204).json({
+      status: 204,
       requestedAt: new Date().toLocaleString(),
     });
 
@@ -140,6 +171,7 @@ module.exports = {
   index,
   showPost,
   createPost,
+  updatePost,
   deletePost,
   likePost,
 }

@@ -14,6 +14,7 @@ router.post( '/createpost', authRequired, post.createPost );
 router.get( '/:postId', authRequired, post.showPost );
 
 // update post
+router.put( '/:postId/updatepost', authRequired, post.updatePost );
 
 // like post
 router.post( '/:postId/likepost', authRequired, post.likePost );
