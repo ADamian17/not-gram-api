@@ -15,9 +15,11 @@ router.get( '/:postId', authRequired, post.showPost );
 
 // update post
 
+// like post
+router.post( '/:postId/likepost', authRequired, post.likePost );
+
 // delete post
 router.delete( '/:postId/delete', authRequired, post.deletePost );
 
-// like post
 
 module.exports = router;

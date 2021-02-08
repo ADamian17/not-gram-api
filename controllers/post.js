@@ -1,9 +1,7 @@
 const { User, Post } = require('../models');
 
 const index = async ( req, res ) => {
-
   try {
-
     const posts = await Post.find({}).populate('user').sort({ createdAt: -1 })
 
     return res.json({
@@ -99,10 +97,43 @@ const deletePost = async ( req, res ) => {
       message: 'internal error',
     });  
   }
-
 }
 
 // like post
+
+const likePost = async ( req, res ) => {
+  try {
+    const postId = req.params.postId;
+
+    const foundPost = await Post.findById( postId );
+    
+    if ( !foundPost.likes.includes( req.user ) ) {
+      
+      foundPost.likes.push( req.user );
+      foundPost.save();
+
+      return res.json({
+        status: 200,
+        message: '1',
+        requestedAt: new Date().toLocaleString(),
+      });
+    }
+
+    return res.json({
+      status: 200,
+      message: '-1',
+      requestedAt: new Date().toLocaleString(),
+    });
+
+  } catch (error) {
+    console.log( error )
+
+    return res.status(500).json({
+      status: 500,
+      message: 'internal error',
+    });
+  };
+};
 
 
 module.exports = {
@@ -110,4 +141,5 @@ module.exports = {
   showPost,
   createPost,
   deletePost,
+  likePost,
 }
