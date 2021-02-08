@@ -27,7 +27,7 @@ app.use( logger );
 
 /* routes */
 // post routes
-app.use( '/', ( req, res ) => {
+app.get( '/', ( req, res ) => {
   res.send('<h1 style="text-align: center;">Not Instagram</h1>')
 }) ;
 
@@ -36,6 +36,9 @@ app.use( '/api/v1/auth', auth );
 
 // users routes 
 // app.use('/api/v1/users', user );
+
+// post routes 
+app.use('/api/v1/posts', post );
 
 // app listing
 app.listen( PORT, () => console.log( `listing at port ${PORT} \nhttp://localhost:${PORT}`) );

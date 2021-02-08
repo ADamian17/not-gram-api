@@ -64,16 +64,19 @@ const login = async ( req, res ) => {
         }
       )
 
-      return res.status(200).json({
+      res.status(200).json({
         status: 200,
         message: 'Success',
         id: foundUser._id,
         signedJwt,
-    });
+      });
+
     }
 
   } catch (error) {
 
+    console.log( error );
+    
     if ( error === 'invalidUser' ) {
 
       return res.status(400).json({
@@ -83,9 +86,10 @@ const login = async ( req, res ) => {
       });
 
   } else {
+
       return res.status(500).json({
         status: 500,
-        message: 'server internal error',
+        message: 'server internal error'
       });
 
     }  

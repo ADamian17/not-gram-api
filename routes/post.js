@@ -1,13 +1,26 @@
 const express = require('express');
 const router = express.Router();
 
-const ctrls = require('../controllers');
+const { post } = require('../controllers');
 const { authRequired } = require('../middleware');
 
+// all post 
+router.get( '/', authRequired, post.index );
 
-router.get( '/', authRequired, ctrls.post.index );
-router.get('/addpost', authRequired, ctrls.post.addPostForm );
-router.post('/newpost', ctrls.post.newPost );
+// new post
+router.post( '/createpost', authRequired, post.createPost );
+
+// show post
+router.get( '/:postId', authRequired, post.showPost );
+
+// update post
+router.put( '/:postId/updatepost', authRequired, post.updatePost );
+
+// like post
+router.post( '/:postId/likepost', authRequired, post.likePost );
+
+// delete post
+router.delete( '/:postId/delete', authRequired, post.deletePost );
 
 
 module.exports = router;
