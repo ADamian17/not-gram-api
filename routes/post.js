@@ -2,13 +2,13 @@ const express = require('express');
 const router = express.Router();
 
 const { post } = require('../controllers');
-const { authRequired } = require('../middleware');
+const { authRequired, saveImg } = require('../middleware');
 
 // all post 
 router.get( '/', authRequired, post.index );
 
 // new post
-router.post( '/createpost', authRequired, post.createPost );
+router.post( '/createpost', authRequired, saveImg, post.createPost );
 
 // show post
 router.get( '/:postId', authRequired, post.showPost );

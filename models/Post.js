@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
 
-
 const postSchema = new mongoose.Schema({
   img: {
+    type: Buffer,
+    required: true
+  },
+  imgType: {
     type: String,
     required: true
   },
@@ -23,6 +26,11 @@ const postSchema = new mongoose.Schema({
   timestamps: true
 });
 
+postSchema.virtual('imgPath').get( function () {
+  if ( this.img !== null && this.imgType !== null ) {
+    return `data:${this.imgType};charset=utf-8;base64,${this.img.toString('base64')} `;
+  }
+});
 
 const Post = mongoose.model('Post', postSchema )
 

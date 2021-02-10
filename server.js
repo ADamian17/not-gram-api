@@ -5,6 +5,7 @@ const cors = require('cors');
 /* INTERNAL MODULES */
 const { user, post, auth } = require('./routes');
 const { logger } = require('./middleware');
+const { Post } = require('./models');
 
 /* PORT */
 require('dotenv').config()
@@ -37,7 +38,7 @@ app.use( '/api/v1/auth', auth );
 // users routes 
 // app.use('/api/v1/users', user );
 
-// post routes 
+// post routes
 app.use('/api/v1/posts', post );
 
 // app listing

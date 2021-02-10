@@ -1,8 +1,42 @@
-<h1>Add post</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<form action="/newpost" method="post">
-  <input type="text" name="img" placeholder="img">
+  <!-- add to document <head> -->
+  <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+  <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+
+  <!-- add before </body> -->
+  <script defer src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"></script>
+  <script defer src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+  <script defer src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
+  <script defer src="https://unpkg.com/filepond/dist/filepond.js"></script>
+
+  <!-- main js -->
+  <script defer src="/scripts/filepond.js" ></script>
+
+  <title>Add post</title>
+</head>
+<body>
+  <h1> Post </h1>
+  <% posts.forEach( post => { %>
+   <img width="50" height="50" src="<%= post.imgPath %> ">
+  <% }) %>
+
+
+  <h1>Add post</h1>
+
+<form action="/api/v1/posts/createpost" method="post">
   <input type="text" name="caption" placeholder="caption">
 
   <input type="submit" value="add post">
+
+  <input type="text" name="img" class="filepond">
+
 </form>
+  
+</body>
+</html>
